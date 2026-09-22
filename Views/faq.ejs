@@ -1,0 +1,31 @@
+<%- include("partials/header") -%>
+
+<main style="background-color: var(--eco-bg); min-height: 100vh; padding: 80px 24px;">
+  <div class="eco-container text-center mb-5">
+    <h1 style="color: var(--eco-primary-dark); font-size: 40px; font-weight: 800; margin-bottom: 16px;">Frequently Asked Questions</h1>
+    <p style="color: var(--eco-text-secondary); max-width: 600px; margin: 0 auto; font-size: 16px;">
+      Everything you need to know about EcoPulse and managing your carbon footprint.
+    </p>
+  </div>
+
+  <div class="eco-container" style="max-width: 800px;">
+    <div class="accordion" id="faqAccordion">
+      <% faqItems.forEach((item, index) => { %>
+        <div class="accordion-item mb-3" style="border: 1px solid var(--eco-border); border-radius: var(--eco-radius-md); overflow: hidden; background: var(--eco-surface);">
+          <h2 class="accordion-header" id="heading<%= index %>">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>" style="background: transparent; color: var(--eco-text); font-weight: 600; font-size: 16px; padding: 20px; box-shadow: none;">
+              <%= item.question %>
+            </button>
+          </h2>
+          <div id="collapse<%= index %>" class="accordion-collapse collapse" aria-labelledby="heading<%= index %>" data-bs-parent="#faqAccordion">
+            <div class="accordion-body" style="color: var(--eco-text-secondary); line-height: 1.6; padding: 0 20px 20px 20px;">
+              <%= item.answer %>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</main>
+
+<%- include("partials/footer") -%>

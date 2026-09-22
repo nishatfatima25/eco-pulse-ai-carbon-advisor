@@ -1,0 +1,97 @@
+<%- include("partials/header") -%>
+
+<main style="background-color: var(--eco-bg); min-height: 100vh; padding: 60px 0;">
+  <div class="eco-container" style="max-width: 600px;">
+    
+    <div class="eco-card">
+      <div class="text-center mb-4">
+        <h1 style="color: var(--eco-primary-dark); font-size: 32px;">EcoPulse for Business</h1>
+        <p style="color: var(--eco-text-secondary);">Enter your company details for an estimated annual carbon impact assessment.</p>
+      </div>
+
+      <form action="/industry-calculator" method="post">
+        
+        <div class="eco-form-group">
+          <label class="eco-label">Company Name</label>
+          <input type="text" class="eco-input" name="companyName" required>
+        </div>
+        
+        <div class="eco-form-group">
+          <label class="eco-label">Area of Work</label>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="sector" id="sector1" value="1" checked>
+            <label class="form-check-label" for="sector1">Agriculture</label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="sector" id="sector2" value="2">
+            <label class="form-check-label" for="sector2">Information Technology</label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="sector" id="sector3" value="3">
+            <label class="form-check-label" for="sector3">Transport</label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="sector" id="sector4" value="4">
+            <label class="form-check-label" for="sector4">Iron and Steel</label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="sector" id="sector5" value="5">
+            <label class="form-check-label" for="sector5">Textile</label>
+          </div>
+        </div>
+
+        <div class="eco-form-group">
+          <label class="eco-label">Number of Employees</label>
+          <input type="number" class="eco-input" name="employ" required min="1">
+        </div>
+
+        <div class="eco-form-group">
+          <label class="eco-label">State</label>
+          <select class="eco-select">
+            <option selected>Choose State</option>
+            <option value="1">Andhra Pradesh</option>
+            <option value="2">Arunachal Pradesh</option>
+            <option value="3">Assam</option>
+            <option value="4">Bihar</option>
+            <option value="5">Chhattisgarh</option>
+            <option value="6">Goa</option>
+            <option value="7">Gujarat</option>
+            <option value="8">Haryana</option>
+            <option value="9">Himachal Pradesh</option>
+            <option value="10">Jharkhand</option>
+            <option value="11">Karnataka</option>
+            <option value="12">Kerala</option>
+            <option value="13">Madhya Pradesh</option>
+            <option value="14">Maharashtra</option>
+            <option value="15">Manipur</option>
+            <option value="16">Meghalaya</option>
+            <option value="17">Mizoram</option>
+            <option value="18">Nagaland</option>
+            <option value="19">Odisha</option>
+            <option value="20">Punjab</option>
+            <option value="21">Rajasthan</option>
+            <option value="22">Sikkim</option>
+            <option value="23">Tamil Nadu</option>
+            <option value="24">Telangana</option>
+            <option value="25">Tripura</option>
+            <option value="26">Uttar Pradesh</option>
+            <option value="27">Uttarakhand</option>
+            <option value="28">West Bengal</option>
+          </select>
+        </div>
+
+        <div class="eco-form-group">
+          <label class="eco-label">City</label>
+          <input type="text" class="eco-input" name="city">
+        </div>
+        
+        <div class="mt-4">
+          <button type="submit" class="btn-eco-primary w-100" style="padding: 16px; font-size: 16px;">Calculate Business Footprint</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</main>
+
+<%- include("partials/footer") -%>

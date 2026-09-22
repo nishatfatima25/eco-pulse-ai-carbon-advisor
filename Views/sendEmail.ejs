@@ -1,0 +1,37 @@
+<%- include("partials/header") -%>
+
+<main style="background-color: var(--eco-bg); min-height: 100vh; padding: 80px 24px;">
+  <div class="eco-container" style="max-width: 600px;">
+    
+    <div class="eco-card">
+      <div class="text-center mb-4">
+        <h1 style="color: var(--eco-primary-dark); font-size: 32px;">Get In Touch</h1>
+        <p style="color: var(--eco-text-secondary); margin-top: 8px;">Drop us a line and we'll get back to you.</p>
+      </div>
+      
+      <form action="mailto:EcoPulsecarbonvision@gmail.com" method="post" enctype="text/plain">
+        <div class="eco-form-group">
+          <label class="eco-label">Name</label>
+          <input type="text" name="Name" class="eco-input" placeholder="Your Name" required>
+        </div>
+        
+        <div class="eco-form-group">
+          <label class="eco-label">Email</label>
+          <input type="email" name="Email" class="eco-input" placeholder="name@example.com" required>
+        </div>
+        
+        <div class="eco-form-group">
+          <label class="eco-label">Your Message</label>
+          <textarea class="eco-textarea" name="Message" rows="5" placeholder="Please tell us a bit about your goals and what you hope to achieve with EcoPulse." required></textarea>
+        </div>
+        
+        <div class="mt-4">
+          <button type="submit" class="btn-eco-primary w-100" style="padding: 14px;">Send Message</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<%- include("partials/footer") -%>

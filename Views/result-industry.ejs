@@ -1,0 +1,72 @@
+<%- include("partials/header") -%>
+
+<main style="background-color: var(--eco-bg); padding: 40px 0; min-height: 100vh;">
+  <div class="eco-container">
+    
+    <!-- Top Result Banner -->
+    <div class="eco-card text-center mb-5" style="background: linear-gradient(135deg, #1f2937 0%, var(--eco-primary-dark) 100%); color: white; border: none;">
+      <h2 style="color: white; font-size: 20px; font-weight: 500; margin-bottom: 8px;">Estimated Annual Carbon Impact</h2>
+      <div style="font-size: 64px; font-weight: 800; line-height: 1; margin-bottom: 16px;">
+        <%= footprintI %> <span style="font-size: 24px; font-weight: 600;">Tonnes CO₂</span>
+      </div>
+      <p style="font-size: 16px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+        Protecting <strong><%= areaI %> hectares</strong> of Tropical Forest can neutralize that amount of carbon dioxide.
+      </p>
+    </div>
+
+    <!-- Offset Programs -->
+    <div class="text-center mb-5">
+      <h2 style="color: var(--eco-primary-dark);">Offset Programs</h2>
+      <p style="color: var(--eco-text-secondary); max-width: 600px; margin: 0 auto;">Invest in verified offset programs to secure a sustainable future for your business and the planet.</p>
+    </div>
+
+    <div class="eco-grid eco-grid-2">
+      <!-- Program 1 -->
+      <div class="eco-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+        <img src="/images/rima.png" alt="RIMA Fuel Switch" style="width: 100%; height: 200px; object-fit: cover;">
+        <div style="padding: 24px; flex-grow: 1; display: flex; flex-direction: column;">
+          <h4 style="font-size: 18px; margin-bottom: 8px;"><a href="https://offset.climateneutralnow.org/rima-fuel-switch-in-bocai-va-889-?searchResultsLink=%2Fallprojects" style="color: var(--eco-text);">RIMA Fuel Switch in Bocaiúva</a></h4>
+          <div class="eco-badge mb-3" style="align-self: flex-start;">Available: 9,259 Tonnes</div>
+          <p style="font-size: 14px; color: var(--eco-text-secondary); margin-bottom: 0;">Hanuman Agro Industries Limited (HAIL) is a public limited company, incorporated in 1994 with the main objectives of carrying out business activities in the field of Paper & Power Generation using conventional or non-conventional fuel.</p>
+        </div>
+      </div>
+
+      <!-- Program 2 -->
+      <div class="eco-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+        <img src="/images/rice.png" alt="Rice Husk Plant" style="width: 100%; height: 200px; object-fit: cover;">
+        <div style="padding: 24px; flex-grow: 1; display: flex; flex-direction: column;">
+          <h4 style="font-size: 18px; margin-bottom: 8px;"><a href="https://offset.climateneutralnow.org/25-mw-rice-husk-based-cogeneration-plant-at-hanuman-agro-industries-limited?searchResultsLink=%2Fallprojects" style="color: var(--eco-text);">2.5 MW Rice husk based cogeneration plant</a></h4>
+          <div class="eco-badge mb-3" style="align-self: flex-start;">Available: 104,490 Tonnes</div>
+          <p style="font-size: 14px; color: var(--eco-text-secondary); margin-bottom: 0;">The project replaces fossil fuel by renewable biomass at one of the factories of Rima Industrial in the northern state of Minas Gerais, a region dedicated to metallurgy and agriculture.</p>
+        </div>
+      </div>
+
+      <!-- Program 3 -->
+      <div class="eco-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+        <img src="/images/10.png" alt="Biomass Plant" style="width: 100%; height: 200px; object-fit: cover;">
+        <div style="padding: 24px; flex-grow: 1; display: flex; flex-direction: column;">
+          <h4 style="font-size: 18px; margin-bottom: 8px;"><a href="https://offset.climateneutralnow.org/10-mw-biomass-based-renewable-energy-generation-for-the-grid-at-saradambika-power-plant-private-limited-at-chandrapur-district-maharashtra?searchResultsLink=%2Fallprojects" style="color: var(--eco-text);">10 MW Biomass Based Renewable Energy Generation</a></h4>
+          <div class="eco-badge mb-3" style="align-self: flex-start;">Available: 3,446 Tonnes</div>
+          <p style="font-size: 14px; color: var(--eco-text-secondary); margin-bottom: 0;">Saradambika is a 10 MW Biomass Power Plant located in Chimur, India. The project conserves local resources, reduces pressure on the environment, and improves health conditions in the community.</p>
+        </div>
+      </div>
+
+      <!-- Program 4 -->
+      <div class="eco-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+        <img src="/images/155.png" alt="Gas based power" style="width: 100%; height: 200px; object-fit: cover;">
+        <div style="padding: 24px; flex-grow: 1; display: flex; flex-direction: column;">
+          <h4 style="font-size: 18px; margin-bottom: 8px;"><a href="https://offset.climateneutralnow.org/155-mw-gas-based-combined-cycle-power-project-at-hazira-1300-?searchResultsLink=%2Fallprojects" style="color: var(--eco-text);">155 MW Gas based combined cycle power project at Hazira</a></h4>
+          <div class="eco-badge mb-3" style="align-self: flex-start;">Available: 21,065 Tonnes</div>
+          <p style="font-size: 14px; color: var(--eco-text-secondary); margin-bottom: 0;">The project activity is to set up a 500 MW natural gas based combined cycle power plant. Phase 1 is 155 MW. The power plant receives Natural Gas in pipelines from Essar Steel Limited.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-5">
+      <a href="/industry-calculator" class="btn-eco-secondary">Recalculate Business Footprint</a>
+    </div>
+
+  </div>
+</main>
+
+<%- include("partials/footer") -%>

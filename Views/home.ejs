@@ -1,0 +1,113 @@
+<%- include("partials/header") -%>
+
+<main>
+  <!-- Hero Section -->
+  <section class="eco-hero">
+    <div class="eco-container">
+      <h1 class="eco-hero-title">Understand your carbon footprint. Reduce it intelligently.</h1>
+      <p class="eco-hero-subtitle">
+        EcoPulse combines deterministic carbon calculations with AI-powered, source-grounded sustainability recommendations.
+      </p>
+      <div class="eco-hero-actions mt-4">
+        <a href="/calculator" class="btn-eco-primary">Calculate My Footprint</a>
+        <a href="#how-it-works" class="btn-eco-secondary">How EcoPulse Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metrics Section -->
+  <section class="eco-section eco-container">
+    <div class="eco-grid eco-grid-4">
+      <div class="eco-card eco-stat-card">
+        <div class="stat-value">4</div>
+        <div class="stat-label">Emission Categories Analyzed</div>
+      </div>
+      <div class="eco-card eco-stat-card">
+        <div class="stat-value">AI</div>
+        <div class="stat-label">Source-Grounded Recommendations</div>
+      </div>
+      <div class="eco-card eco-stat-card">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Personalized Reduction Insights</div>
+      </div>
+      <div class="eco-card eco-stat-card">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Analysis Modes (Individual & Industry)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="eco-section" style="background-color: var(--eco-surface-alt);">
+    <div class="eco-container">
+      <h2 class="text-center mb-4">How EcoPulse Works</h2>
+      <div class="eco-grid eco-grid-4 mt-4">
+        <div class="eco-card">
+          <h3 style="color: var(--eco-primary);">01 — Measure</h3>
+          <p class="mt-2" style="font-size: 14px; color: var(--eco-text-secondary);">Enter household, travel, energy, cooking, and diet information.</p>
+        </div>
+        <div class="eco-card">
+          <h3 style="color: var(--eco-primary);">02 — Understand</h3>
+          <p class="mt-2" style="font-size: 14px; color: var(--eco-text-secondary);">EcoPulse calculates your carbon footprint and category breakdown.</p>
+        </div>
+        <div class="eco-card">
+          <h3 style="color: var(--eco-primary);">03 — Retrieve</h3>
+          <p class="mt-2" style="font-size: 14px; color: var(--eco-text-secondary);">The RAG engine finds relevant sustainability guidance from the knowledge base.</p>
+        </div>
+        <div class="eco-card">
+          <h3 style="color: var(--eco-primary);">04 — Reduce</h3>
+          <p class="mt-2" style="font-size: 14px; color: var(--eco-text-secondary);">EcoPulse AI generates grounded, actionable recommendations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="eco-section eco-container">
+    <div class="eco-grid eco-grid-3">
+      <div class="eco-card eco-feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-calculator"></i></div>
+        <h4>Carbon Footprint Engine</h4>
+        <p style="font-size: 14px; color: var(--eco-text-secondary);">Deterministic carbon calculations based on your specific consumption data.</p>
+      </div>
+      <div class="eco-card eco-feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div>
+        <h4>Smart Category Insights</h4>
+        <p style="font-size: 14px; color: var(--eco-text-secondary);">Understand the highest-emission contributors in your daily life.</p>
+      </div>
+      <div class="eco-card eco-feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-database"></i></div>
+        <h4>RAG-Powered Advisor</h4>
+        <p style="font-size: 14px; color: var(--eco-text-secondary);">Retrieve relevant sustainability knowledge directly connected to your impact.</p>
+      </div>
+      <div class="eco-card eco-feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-robot"></i></div>
+        <h4>AI Action Plan</h4>
+        <p style="font-size: 14px; color: var(--eco-text-secondary);">Receive personalized recommendations tailored to your unique footprint.</p>
+      </div>
+      <div class="eco-card eco-feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-file-text"></i></div>
+        <h4>Source Grounding</h4>
+        <p style="font-size: 14px; color: var(--eco-text-secondary);">View retrieved source chunks behind every AI-generated recommendation.</p>
+      </div>
+      <div class="eco-card eco-feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h4>Impact Visualization</h4>
+        <p style="font-size: 14px; color: var(--eco-text-secondary);">Understand emissions with interactive charts and national comparisons.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="eco-section text-center" style="background-color: var(--eco-primary-dark); color: white;">
+    <div class="eco-container">
+      <h2 style="color: white; margin-bottom: 24px;">Ready to understand your footprint?</h2>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="/calculator" class="btn-eco-primary" style="background-color: white; color: var(--eco-primary-dark) !important;">Individual Calculator</a>
+        <a href="/industry-calculator" class="btn-eco-ghost" style="border: 1px solid white; color: white !important;">EcoPulse for Business</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include("partials/footer") -%>

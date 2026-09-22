@@ -1,0 +1,228 @@
+<%- include("partials/header") -%>
+
+<main style="background-color: var(--eco-bg); padding: 40px 0; min-height: 100vh;">
+  <div class="eco-container">
+    
+    <!-- Top Result Banner -->
+    <div class="eco-card text-center mb-4" style="background: linear-gradient(135deg, var(--eco-primary-dark) 0%, var(--eco-primary) 100%); color: white; border: none;">
+      <h2 style="color: white; font-size: 20px; font-weight: 500; margin-bottom: 8px;">Your Monthly Carbon Footprint</h2>
+      <div style="font-size: 64px; font-weight: 800; line-height: 1; margin-bottom: 16px;">
+        <%= footprint %> <span style="font-size: 24px; font-weight: 600;">kg CO₂</span>
+      </div>
+      <p style="font-size: 16px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+        Protecting <strong><%= area %> acres</strong> of Tropical Forest can neutralize this amount of carbon dioxide.
+      </p>
+    </div>
+
+    <!-- Analytics Dashboard Layout -->
+    <div class="eco-grid" style="grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+      
+      <!-- Breakdown Chart -->
+      <div class="eco-card text-center">
+        <h3 style="font-size: 20px; margin-bottom: 24px;">Category Breakdown</h3>
+        <div style="position: relative; width: 100%; max-width: 300px; margin: 0 auto;">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Comparisons -->
+      <div class="eco-card d-flex flex-column justify-content-center">
+        <h3 style="font-size: 20px; margin-bottom: 24px; text-align: center;">How Do You Compare?</h3>
+        
+        <div style="background: var(--eco-surface-alt); padding: 16px; border-radius: var(--eco-radius-md); margin-bottom: 16px;">
+          <div style="font-size: 14px; color: var(--eco-text-secondary); font-weight: 600;">India Comparison</div>
+          <div style="font-size: 18px; font-weight: 700; color: var(--eco-primary-dark);"><%= indiaResultSub %></div>
+        </div>
+
+        <div style="background: var(--eco-surface-alt); padding: 16px; border-radius: var(--eco-radius-md);">
+          <div style="font-size: 14px; color: var(--eco-text-secondary); font-weight: 600;">Global Average</div>
+          <div style="font-size: 18px; font-weight: 700; color: var(--eco-primary-dark);">1567 kg CO₂</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAG AI ADVISOR SECTION -->
+    <div class="eco-ai-card mb-4" id="ai-advisor">
+      <div class="eco-ai-header">
+        <div class="eco-ai-icon"><i class="fa-solid fa-robot"></i></div>
+        <div>
+          <h2 style="font-size: 24px; margin: 0;">EcoPulse AI Advisor</h2>
+          <p style="margin: 0; color: var(--eco-text-secondary); font-size: 14px;">Recommendations grounded in your footprint and our sustainability knowledge base.</p>
+        </div>
+        <div class="ms-auto d-none d-md-block">
+          <span class="eco-badge">RAG Grounded</span>
+        </div>
+      </div>
+      
+      <div class="text-center" id="getAiAdviceBtnContainer">
+        <button id="getAiAdviceBtn" class="btn-eco-primary" onclick="fetchAiRecommendations()" style="font-size: 16px; padding: 16px 32px;">
+          <i class="fa-solid fa-wand-magic-sparkles me-2"></i> Generate My AI Reduction Plan
+        </button>
+      </div>
+
+      <div id="aiLoadingState" class="ai-loading-state">
+        <div class="eco-spinner"></div>
+        <div style="font-weight: 600; color: var(--eco-primary-dark);">Analyzing your footprint and retrieving relevant sustainability guidance...</div>
+      </div>
+
+      <div id="aiAdviceOutput" class="d-none mt-4">
+        <div class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom">
+          <span id="groundingBadge" class="eco-badge">Grounding: High</span>
+          <span id="topCategoryTag" class="eco-badge" style="background: var(--eco-surface-alt);"></span>
+        </div>
+        
+        <div id="aiContentMarkdown" style="font-size: 15px; color: var(--eco-text); line-height: 1.7;"></div>
+
+        <div class="mt-4">
+          <button class="btn-eco-ghost w-100 text-start d-flex justify-content-between align-items-center" style="background: var(--eco-surface-alt);" type="button" data-bs-toggle="collapse" data-bs-target="#sourcesCollapse" aria-expanded="false">
+            <span><i class="fa-solid fa-book-open me-2"></i> View Retrieved Sources (<span id="sourceCount">0</span>)</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          
+          <div class="collapse mt-3" id="sourcesCollapse">
+            <div id="sourcesList" class="eco-source-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="aiErrorState" class="alert alert-danger mt-4 d-none" role="alert" style="border-radius: var(--eco-radius-md);">
+        <strong id="aiErrorMessage">Unable to generate AI recommendations at this moment.</strong>
+      </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="text-center mt-5 mb-5 d-flex flex-wrap justify-content-center gap-3">
+      <button id="button" value="<%= percentages %>" style="display: none;"></button>
+      <a href="/offset" class="btn-eco-primary">Offset My Footprint</a>
+      <a href="/calculator" class="btn-eco-secondary">Recalculate</a>
+      <a href="/" class="btn-eco-ghost">Return Home</a>
+    </div>
+
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Chart Logic
+  const ctx = document.getElementById('myChart');
+  const data1 = document.getElementById("button").value;
+  let data2 = [];
+  let string = '';
+  
+  if (data1) {
+    for (let i = 0; i < data1.length; i++) {
+      if (data1[i] == ',') {
+        data2.push(parseFloat(string));
+        string = '';
+      } else {
+        string += data1[i];
+      }
+    }
+    data2.push(parseFloat(string));
+  } else {
+    data2 = [25, 25, 25, 25]; // fallback
+  }
+
+  new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ['Electricity', 'Gas', 'Travel', 'Food'],
+      datasets: [{
+        data: data2,
+        backgroundColor: ['#13795b', '#20b486', '#d98c32', '#c94c4c'],
+        borderWidth: 0,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            font: { family: "'Inter', sans-serif", size: 14 },
+            padding: 20
+          }
+        }
+      }
+    }
+  });
+
+  // AI Logic
+  async function fetchAiRecommendations() {
+      const btn = document.getElementById('getAiAdviceBtn');
+      const btnContainer = document.getElementById('getAiAdviceBtnContainer');
+      const loading = document.getElementById('aiLoadingState');
+      const output = document.getElementById('aiAdviceOutput');
+      const errorState = document.getElementById('aiErrorState');
+      const markdownDiv = document.getElementById('aiContentMarkdown');
+      const groundingBadge = document.getElementById('groundingBadge');
+      const topCatTag = document.getElementById('topCategoryTag');
+      const sourcesList = document.getElementById('sourcesList');
+      const sourceCount = document.getElementById('sourceCount');
+
+      btnContainer.classList.add('d-none');
+      loading.classList.add('active');
+      output.classList.add('d-none');
+      errorState.classList.add('d-none');
+
+      try {
+          const response = await fetch('/api/ai/recommendations', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                  footprint: Number("<%= footprint %>") || 0,
+                  percentages: data2
+              })
+          });
+
+          const data = await response.json();
+          loading.classList.remove('active');
+
+          if (!response.ok || data.error) {
+              throw new Error(data.error || "Failed to fetch AI advice");
+          }
+
+          let formattedHtml = data.recommendationsMarkdown
+              .replace(/^### (.*$)/gim, '<h4 style="color: var(--eco-primary-dark); margin-top: 24px; font-size: 18px;">$1</h4>')
+              .replace(/^## (.*$)/gim, '<h3 style="color: var(--eco-text); margin-top: 24px; font-size: 20px;">$1</h3>')
+              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+              .replace(/^[-*]\s+(.*$)/gim, '<li style="margin-bottom: 8px;">$1</li>');
+
+          markdownDiv.innerHTML = formattedHtml;
+          groundingBadge.innerText = `Grounding: ${data.groundingConfidence}`;
+          topCatTag.innerText = `Primary Driver: ${data.topCategory}`;
+
+          sourcesList.innerHTML = '';
+          sourceCount.innerText = data.sources ? data.sources.length : 0;
+
+          if (data.sources && data.sources.length > 0) {
+              data.sources.forEach(src => {
+                  const item = document.createElement('div');
+                  item.className = 'eco-source-card';
+                  item.innerHTML = `
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                          <h5 style="margin: 0; font-size: 15px; color: var(--eco-text);">${src.title} (Chunk ${src.chunk})</h5>
+                          <span class="eco-badge" style="background: #e6f4ea; color: #1e8e3e;">${src.similarityScore}% Match</span>
+                      </div>
+                      <p style="margin: 0 0 8px 0; color: var(--eco-text-secondary); font-size: 14px; font-style: italic;">"${src.snippet}"</p>
+                      <small style="color: #888; font-size: 12px;"><i class="fa-solid fa-file me-1"></i> ${src.file}</small>
+                  `;
+                  sourcesList.appendChild(item);
+              });
+          }
+
+          output.classList.remove('d-none');
+          btn.innerText = 'Refresh AI Recommendations';
+          btnContainer.classList.remove('d-none');
+      } catch (err) {
+          loading.classList.remove('active');
+          errorState.classList.remove('d-none');
+          document.getElementById('aiErrorMessage').innerText = err.message || "Unable to reach AI service.";
+          btnContainer.classList.remove('d-none');
+      }
+  }
+</script>
+
+<%- include("partials/footer") -%>
