@@ -239,13 +239,6 @@ Rebuild the RAG vector store:
 node rag/ingest.js
 ```
 
-## Contributing
-
-1. Create a new branch.
-2. Make your changes.
-3. Test locally.
-4. Commit with a clear message.
-5. Push the branch and create a pull request.
 
 ## License
 
